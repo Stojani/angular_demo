@@ -44,6 +44,7 @@ export class GraphViewerComponent implements AfterViewInit {
 
       const { nodes, edges } = Drawer.fromJSON(graphData);
       this.shaper = new Shaper(this.containerRef.nativeElement, nodes, edges);
+      //this.changeBackgroundColor("white");
     }
   }
 
@@ -61,5 +62,13 @@ export class GraphViewerComponent implements AfterViewInit {
 
   onSee3D() {
     this.shaper.see3D();
+  }
+
+  changeBackgroundColor(color: string) {
+    this.shaper.setBackgroundColor(color);
+  }
+
+  resetBackgroundColor() {
+    this.shaper.resetBackgroundColor();
   }
 }
