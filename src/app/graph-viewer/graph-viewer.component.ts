@@ -79,4 +79,12 @@ export class GraphViewerComponent implements AfterViewInit {
   stopRotateCamera() {
     this.shaper.stopRotateCamera();
   }
+
+  showTablet() {
+    this.shaper.showTablet();
+  }
+
+  hideTablet() {
+    this.shaper.hideTablet();
+  }
 }
