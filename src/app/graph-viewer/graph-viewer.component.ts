@@ -71,4 +71,12 @@ export class GraphViewerComponent implements AfterViewInit {
   resetBackgroundColor() {
     this.shaper.resetBackgroundColor();
   }
+
+  autoRotateCamera() {
+    this.shaper.autoRotateCamera();
+  }
+
+  stopRotateCamera() {
+    this.shaper.stopRotateCamera();
+  }
 }
