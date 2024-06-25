@@ -10,7 +10,7 @@ declare module 'grash' {
     }
   
     export class Edge {
-      constructor(node1: Node, node2: Node, material?: any);
+      constructor(source: Node, target: Node, material?: any);
       mesh: any;
       updateGeometry(): void;
     }

@@ -30,15 +30,15 @@ export class GraphViewerComponent implements AfterViewInit {
           { id: 10, x: -1, y: -1, z: -2,  color: 'Green' },
         ],
         edges: [
-          { node1: 1, node2: 2 },
-          { node1: 2, node2: 3 },
-          { node1: 2, node2: 4 },
-          { node1: 4, node2: 5 },
-          { node1: 3, node2: 6 },
-          { node1: 1, node2: 7 },
-          { node1: 1, node2: 8 },
-          { node1: 1, node2: 9 },
-          { node1: 1, node2: 10 },
+          { source: 1, target: 2 },
+          { source: 2, target: 3 },
+          { source: 2, target: 4 },
+          { source: 4, target: 5 },
+          { source: 3, target: 6 },
+          { source: 1, target: 7 },
+          { source: 1, target: 8 },
+          { source: 1, target: 9 },
+          { source: 1, target: 10 },
         ]
       };
 
