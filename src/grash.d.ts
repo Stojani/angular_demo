@@ -17,6 +17,8 @@ declare module 'grash' {
     stopRotateCamera(): void;
     showTablet(): void;
     hideTablet(): void;
+    enableShadows(): void;
+    disableShadows(): void;
 
     // Metodi nuovi
     initForceSimulation(): void;

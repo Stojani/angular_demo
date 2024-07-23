@@ -399,4 +399,12 @@ export class GraphViewerComponent implements AfterViewInit {
   hideTablet() {
     this.shaper.hideTablet();
   }
+
+  showShadows() {
+    this.shaper.enableShadows();
+  }
+
+  hideShadows() {
+    this.shaper.disableShadows();
+  }
 }
