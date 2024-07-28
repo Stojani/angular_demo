@@ -45,6 +45,11 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.autoRotateCamera();
         break; 
       } 
+      case 4: { 
+        this.showTablet();
+        this.shaper.setCameraPosition(0, -80, 20);
+        break; 
+      } 
       default: { 
          //statements; 
          break; 

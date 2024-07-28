@@ -17,10 +17,11 @@ declare module 'grash' {
     stopRotateCamera(): void;
     showTablet(): void;
     hideTablet(): void;
-    addLight(x: number, y: number, z: number)
+    addLight(x: number, y: number, z: number): void;
     enableShadows(): void;
     disableShadows(): void;
     destroy(): void;
+    setCameraPosition(x: number, y: number, z: number): void;
 
     // Metodi nuovi
     initForceSimulation(): void;
