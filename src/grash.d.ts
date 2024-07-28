@@ -22,6 +22,8 @@ declare module 'grash' {
     disableShadows(): void;
     destroy(): void;
     setCameraPosition(x: number, y: number, z: number): void;
+    setAllNodesColor(): void;
+    setAllEdgesColor(): void;
 
     // Metodi nuovi
     initForceSimulation(): void;

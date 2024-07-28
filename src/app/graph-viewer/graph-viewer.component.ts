@@ -33,26 +33,29 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     //this.changeBackgroundColor("white");
     switch(graphNumber) { 
       case 1: { 
-         //statements; 
-         break; 
+        this.shaper.setAllEdgesColor("yellow");
+        break; 
       } 
       case 2: { 
-         //statements; 
-         break; 
+        this.shaper.setAllEdgesColor("green");
+        break; 
       }
       case 3: { 
         this.addLight(0,0,-8);
+        this.shaper.setAllEdgesColor("yellow");
         this.autoRotateCamera();
         break; 
       } 
       case 4: { 
+        this.changeBackgroundColor("white");
         this.showTablet();
         this.shaper.setCameraPosition(0, -80, 20);
+        this.shaper.setAllNodesColor("red");
+        this.shaper.setAllEdgesColor("black");
         break; 
       } 
       default: { 
-         //statements; 
-         break; 
+        break; 
       } 
    } 
   }
