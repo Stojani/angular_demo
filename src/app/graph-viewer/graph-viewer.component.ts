@@ -41,6 +41,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
          break; 
       }
       case 3: { 
+        this.addLight(0,0,-8);
         this.autoRotateCamera();
         break; 
       } 
@@ -446,5 +447,9 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   hideShadows() {
     this.shaper.disableShadows();
+  }
+
+  addLight(x: number, y: number, z: number) {
+    this.shaper.addLight(x,y,z);
   }
 }

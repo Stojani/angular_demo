@@ -17,6 +17,7 @@ declare module 'grash' {
     stopRotateCamera(): void;
     showTablet(): void;
     hideTablet(): void;
+    addLight(x: number, y: number, z: number)
     enableShadows(): void;
     disableShadows(): void;
     destroy(): void;
