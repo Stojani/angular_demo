@@ -1,1 +1,2 @@
-<app-graph-viewer></app-graph-viewer>
+<app-navbar (graphSelected)="onGraphSelected($event)"></app-navbar>
+<app-graph-viewer [graphNumber]="selectedGraph"></app-graph-viewer>

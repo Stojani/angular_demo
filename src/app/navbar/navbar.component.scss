@@ -1,0 +1,38 @@
+.navbar {
+    background-color: black;
+    padding: 1em;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start; /* Allinea i bottoni a sinistra */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin-right: 1em; /* Aggiungi spazio tra i bottoni */
+  }
+  
+  .navbar-button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .navbar-button.selected {
+    background-color: lightgreen; /* Colore per il bottone selezionato */
+    color: black;
+  }
+  
+  .navbar-button:hover {
+    background-color: gray;
+    color: white;
+  }
+  

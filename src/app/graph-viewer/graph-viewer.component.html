@@ -1,12 +1,32 @@
+<!-- 
+<div *ngIf="graphNumber">
+    <p>Caricamento Graph {{ graphNumber }}</p>
+</div>
+-->
 <div #container style="width: 100%; height: 100vh;"></div>
-<button (click)="highlightNode()">Highlight Node</button>
-<button (click)="onSee2D()">2D View</button>
-<button (click)="onSee3D()">3D View</button>
-<button (click)="autoRotateCamera()">Abilita Rotazione Automatica</button>
-<button (click)="stopRotateCamera()">Disabilita Rotazione Automatica</button>
-<button (click)="changeBackgroundColor('white')">Sfondo Bianco</button>
-<button (click)="resetBackgroundColor()">Reset Sfondo</button>
-<button (click)="showTablet()">Mostra Tavoletta</button>
-<button (click)="hideTablet()">Nascondi Tavoletta</button>
-<button (click)="showShadows()">Mostra Ombre</button>
-<button (click)="hideShadows()">Nascondi Ombre</button>
+<ng-container *ngIf="graphNumber===1">
+    <button (click)="highlightNode()">Highlight Node</button>
+    <button (click)="onSee2D()">2D View</button>
+    <button (click)="onSee3D()">3D View</button>
+    <button (click)="autoRotateCamera()">Abilita Rotazione Automatica</button>
+    <button (click)="stopRotateCamera()">Disabilita Rotazione Automatica</button>
+    <button (click)="changeBackgroundColor('white')">Sfondo Bianco</button>
+    <button (click)="resetBackgroundColor()">Reset Sfondo</button>
+    <button (click)="showTablet()">Mostra Tavoletta</button>
+    <button (click)="hideTablet()">Nascondi Tavoletta</button>
+    <button (click)="showShadows()">Mostra Ombre</button>
+    <button (click)="hideShadows()">Nascondi Ombre</button>
+</ng-container>
+<ng-container *ngIf="graphNumber===2">
+    <button (click)="autoRotateCamera()">Abilita Rotazione Automatica</button>
+    <button (click)="stopRotateCamera()">Disabilita Rotazione Automatica</button>
+    <button (click)="changeBackgroundColor('white')">Sfondo Bianco</button>
+    <button (click)="resetBackgroundColor()">Reset Sfondo</button>
+    <button (click)="showTablet()">Mostra Tavoletta</button>
+    <button (click)="hideTablet()">Nascondi Tavoletta</button>
+    <button (click)="showShadows()">Mostra Ombre</button>
+    <button (click)="hideShadows()">Nascondi Ombre</button>
+</ng-container>
+<ng-container *ngIf="graphNumber===3">
+</ng-container>
+

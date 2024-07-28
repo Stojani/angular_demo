@@ -19,6 +19,7 @@ declare module 'grash' {
     hideTablet(): void;
     enableShadows(): void;
     disableShadows(): void;
+    destroy(): void;
 
     // Metodi nuovi
     initForceSimulation(): void;

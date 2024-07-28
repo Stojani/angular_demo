@@ -1,22 +1,62 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Shaper, Drawer, GraphOperations } from 'grash';
 
 @Component({
   selector: 'app-graph-viewer',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './graph-viewer.component.html',
   styleUrls: ['./graph-viewer.component.scss']
 })
-export class GraphViewerComponent implements AfterViewInit {
+export class GraphViewerComponent implements AfterViewInit, OnChanges {
   @ViewChild('container') containerRef!: ElementRef;
   shaper!: any;
+  graphData = {};
+
+  @Input() graphNumber: number | undefined;
+
+  ngOnChanges(changes: SimpleChanges) {
+    debugger;
+    if (changes['graphNumber'] && this.containerRef) {
+      this.loadGraph(changes['graphNumber'].currentValue);
+    }
+  }
+
+  loadGraph(graphNumber: number) {
+    debugger;
+    if (this.shaper) {
+      this.shaper.destroy();
+    }
+    const { nodes, edges } = Drawer.fromJSON(this.graphData);
+    this.shaper = new Shaper(this.containerRef.nativeElement, nodes, edges);
+    //this.changeBackgroundColor("white");
+    switch(graphNumber) { 
+      case 1: { 
+         //statements; 
+         break; 
+      } 
+      case 2: { 
+         //statements; 
+         break; 
+      }
+      case 3: { 
+        this.autoRotateCamera();
+        break; 
+      } 
+      default: { 
+         //statements; 
+         break; 
+      } 
+   } 
+  }
 
   constructor() { }
 
   ngAfterViewInit(): void {
+    debugger;
     if (this.containerRef && this.containerRef.nativeElement) {
-      const graphData = {
+      this.graphData = {
         "nodes": [
           {"id": "Myriel", "group": 1},
           {"id": "Napoleon", "group": 1},
@@ -353,10 +393,10 @@ export class GraphViewerComponent implements AfterViewInit {
           {"source": "Mme.Hucheloup", "target": "Enjolras", "value": 1}
         ]
       };
+    }
 
-      const { nodes, edges } = Drawer.fromJSON(graphData);
-      this.shaper = new Shaper(this.containerRef.nativeElement, nodes, edges);
-      //this.changeBackgroundColor("white");
+    if (this.graphNumber !== undefined) {
+      this.loadGraph(this.graphNumber);
     }
   }
 
