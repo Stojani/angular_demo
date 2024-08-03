@@ -52,6 +52,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.shaper.setCameraPosition(0, -80, 20);
         this.shaper.setAllNodesColor("red");
         this.shaper.setAllEdgesColor("black");
+        this.shaper.interactions.disableMouseRotation();
         break; 
       } 
       default: { 

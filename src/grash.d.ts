@@ -3,7 +3,6 @@ declare module 'grash' {
     constructor(container: HTMLElement, nodes: Node[], edges: Edge[]);
     static drawGraph(container: HTMLElement, data: { nodes: any[], edges: any[] }): void;
 
-    // Metodi esistenti
     setSize(width: number, height: number): void;
     setZoom(zoom: number): void;
     setMaxZoomIn(maxZoomIn: number): void;
@@ -24,8 +23,8 @@ declare module 'grash' {
     setCameraPosition(x: number, y: number, z: number): void;
     setAllNodesColor(): void;
     setAllEdgesColor(): void;
+    removeMouseMovements(): void;
 
-    // Metodi nuovi
     initForceSimulation(): void;
     ticked(): void;
     animate(): void;
