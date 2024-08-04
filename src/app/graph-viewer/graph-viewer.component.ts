@@ -55,6 +55,10 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.shaper.interactions.disableMouseRotation();
         break; 
       } 
+      case 5: { 
+        this.shaper.setAllEdgesColor("yellow");
+        break; 
+      } 
       default: { 
         break; 
       } 
@@ -460,5 +464,9 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   addLight(x: number, y: number, z: number) {
     this.shaper.addLight(x,y,z);
+  }
+
+  removeSelectedNodes() {
+    this.shaper.removeSelectedNodes();
   }
 }
