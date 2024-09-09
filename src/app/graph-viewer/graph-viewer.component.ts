@@ -17,14 +17,12 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   @Input() graphNumber: number | undefined;
 
   ngOnChanges(changes: SimpleChanges) {
-    debugger;
     if (changes['graphNumber'] && this.containerRef) {
       this.loadGraph(changes['graphNumber'].currentValue);
     }
   }
 
   loadGraph(graphNumber: number) {
-    debugger;
     if (this.shaper) {
       this.shaper.destroy();
     }
@@ -68,7 +66,6 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   constructor() { }
 
   ngAfterViewInit(): void {
-    debugger;
     if (this.containerRef && this.containerRef.nativeElement) {
       this.graphData = {
         "nodes": [
@@ -472,5 +469,9 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   updateSimulation() {
     this.shaper.updateGraphSimulation();
+  }
+
+  addNode() {
+    this.shaper.addNode();
   }
 }
