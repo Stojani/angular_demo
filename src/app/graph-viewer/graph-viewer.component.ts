@@ -474,4 +474,10 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   addNode() {
     this.shaper.addNode();
   }
+
+  addEdge() {
+    const sourceNode = this.shaper.interactions.selectedNodes[0];
+    const targetNode = this.shaper.interactions.selectedNodes[1];
+    this.shaper.addEdge(sourceNode, targetNode);
+  }
 }
