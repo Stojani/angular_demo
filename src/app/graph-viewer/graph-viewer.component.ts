@@ -56,6 +56,14 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
       case 5: { 
         this.shaper.setAllEdgesColor("yellow");
         break; 
+      }
+      case 6: { 
+        this.changeBackgroundColor("white");
+        this.showTablet();
+        this.shaper.setCameraPosition(0, -80, 20);
+        this.shaper.setAllEdgesColor("black");
+        this.shaper.interactions.disableMouseRotation();
+        break; 
       } 
       default: { 
         break; 
@@ -479,5 +487,13 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     const sourceNode = this.shaper.interactions.selectedNodes[0];
     const targetNode = this.shaper.interactions.selectedNodes[1];
     this.shaper.addEdge(sourceNode, targetNode);
+  }
+
+  extrudeSelectedNodes() {
+    this.shaper.extrudeSelectedNodes();
+  }
+
+  resetExtrusion() {
+    this.shaper.resetExtrusion();
   }
 }
