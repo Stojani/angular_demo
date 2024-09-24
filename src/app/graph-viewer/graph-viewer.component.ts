@@ -494,6 +494,10 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.shaper.extrudeSelectedNodes();
   }
 
+  doExtrusion() {
+    this.shaper.doExtrusion();
+  }
+
   resetExtrusion() {
     this.shaper.resetExtrusion();
   }
