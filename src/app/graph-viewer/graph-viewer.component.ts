@@ -501,4 +501,17 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   resetExtrusion() {
     this.shaper.resetExtrusion();
   }
+
+  changeCameraSettings() {
+    this.shaper.setCameraSettings({
+      fov: 30,
+      distance: 50,
+      near: 0.1,
+      far: 2000
+    });
+  }
+
+  resetCameraSettings() {
+    this.shaper.resetCameraSettings();
+  }
 }
