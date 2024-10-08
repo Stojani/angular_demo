@@ -26,6 +26,12 @@
     <button (click)="hideTablet()">Nascondi Tavoletta</button>
     <button (click)="showShadows()">Mostra Ombre</button>
     <button (click)="hideShadows()">Nascondi Ombre</button>
+    <button (click)="addAmbientLight()">Add Ambient Light</button>
+    <button (click)="removeAmbientLight()">Remove Ambient Light</button>
+    <button (click)="addHemisphereLight()">Add Hemisphere Light</button>
+    <button (click)="removeHemisphereLight()">Remove Hemisphere Light</button>
+    <button (click)="addDirLight()">Add Dir Light</button>
+    <button (click)="removeDirLight()">Remove Dir Light</button>
 </ng-container>
 <ng-container *ngIf="graphNumber===3">
 </ng-container>
@@ -45,5 +51,9 @@
     <button (click)="resetExtrusion()">Reset Extrusion</button>
     <button (click)="changeCameraSettings()">Fix Camera Settings</button>
     <button (click)="resetCameraSettings()">Reset Camera Settings</button>
+    <button (click)="addAmbientLight()">Add Ambient Light</button>
+    <button (click)="removeAmbientLight()">Remove Ambient Light</button>
+    <button (click)="addHemisphereLight()">Add Hemisphere Light</button>
+    <button (click)="removeHemisphereLight()">Remove Hemisphere Light</button>
 </ng-container>
 

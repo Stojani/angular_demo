@@ -60,7 +60,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
       case 6: { 
         this.changeBackgroundColor("white");
         this.showTablet();
-        this.shaper.setCameraPosition(0, -80, 20);
+        this.shaper.setCameraPosition(0, -80, 30);
         this.shaper.setAllEdgesColor("black");
         this.shaper.interactions.disableMouseRotation();
         this.shaper.interactions.disableShowNodePopUp();
@@ -513,5 +513,29 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   resetCameraSettings() {
     this.shaper.resetCameraSettings();
+  }
+
+  addAmbientLight() {
+    this.shaper.addAmbientLight();
+  }
+
+  removeAmbientLight() {
+    this.shaper.removeAmbientLight();
+  }
+
+  addHemisphereLight() {
+    this.shaper.addHemisphereLight();
+  }
+
+  removeHemisphereLight() {
+    this.shaper.removeHemisphereLight();
+  }
+
+  addDirLight() {
+    this.shaper.addLight(0,10,15);
+  }
+
+  removeDirLight() {
+    this.shaper.removeDirectionalLight();
   }
 }
