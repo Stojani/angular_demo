@@ -60,7 +60,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
       case 6: { 
         this.changeBackgroundColor("white");
         this.showTablet();
-        this.shaper.setCameraPosition(0, -80, 30);
+        this.shaper.setCameraPosition(0, -90, 10);
         this.shaper.setAllEdgesColor("black");
         this.shaper.interactions.disableMouseRotation();
         this.shaper.interactions.disableShowNodePopUp();
@@ -504,8 +504,9 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   changeCameraSettings() {
     this.shaper.setCameraSettings({
-      fov: 30,
-      distance: 50,
+      fov: 2,
+      aspect: 16/9,
+      distance: 600,
       near: 0.1,
       far: 2000
     });
@@ -537,5 +538,13 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   removeDirLight() {
     this.shaper.removeDirectionalLight();
+  }
+
+  extrudeShortestPath() {
+    this.shaper.extrudeShortestPath();
+  }
+
+  resetShortestPathExtrusion() {
+    this.shaper.resetShortestPathExtrusion();
   }
 }
