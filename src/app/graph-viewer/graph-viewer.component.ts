@@ -504,11 +504,11 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   changeCameraSettings() {
     this.shaper.setCameraSettings({
-      fov: 20,
+      fov: 10,
       aspect: 16/9,
       near: 0.1,
       far: 2000,
-      distance: 600
+      distance: 500
     });
   }
 
