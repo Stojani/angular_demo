@@ -64,6 +64,8 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.shaper.setAllEdgesColor("black");
         this.shaper.interactions.disableMouseRotation();
         this.shaper.interactions.disableShowNodePopUp();
+        this.addAmbientLight();
+        //this.shaper.interactions.enableRotationAroundTest();
         break; 
       } 
       default: { 
@@ -446,6 +448,14 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   autoRotateCamera() {
     this.shaper.autoRotateCamera();
+  }
+
+  autoRotateCameraAroundZ() {
+    this.shaper.autoRotateCameraAroundZ();
+  }
+
+  autoRotateCamera3() {
+    this.shaper.autoRotateCameraAroundX();
   }
 
   stopRotateCamera() {
