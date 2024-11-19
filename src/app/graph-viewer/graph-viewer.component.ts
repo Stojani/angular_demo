@@ -227,11 +227,27 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.shaper.resetNodesExtrusionByGroup();
   }
 
+  extrudeByGroups() {
+    this.shaper.extrudeByGroups();
+  }
+
+  resetExtrusionByGroup() {
+    this.shaper.resetExtrusionByGroup();
+  }
+
   colorNodesByGroup() {
     this.shaper.colorNodesByGroup();
   }
 
   resetNodesColors() {
     this.shaper.resetNodesColors();
+  }
+
+  colorEdgesByGroup() {
+    this.shaper.colorEdgesByGroup();
+  }
+
+  resetEdgesColors() {
+    this.shaper.resetEdgesColors();
   }
 }
