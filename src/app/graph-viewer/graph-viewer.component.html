@@ -46,6 +46,16 @@
     -->
 </ng-container>
 <ng-container *ngIf="graphNumber===6">
+    <!-- Banner -->
+    <div *ngIf="selectedNodeObj" style="width: 100%; padding: 10px; background-color: black; border: 1px solid #ccc; margin-bottom: 10px; color: white;">
+        <ng-container>
+            <strong>ID: </strong> {{ selectedNodeObj.id }} - 
+            <strong>X: </strong> {{ selectedNodeObj.x }} - 
+            <strong>Y: </strong> {{ selectedNodeObj.y }} - 
+            <strong>Z: </strong> {{ selectedNodeObj.z }} - 
+            <strong>Group: </strong> {{ selectedNodeObj.group }}
+        </ng-container>
+    </div>
     <button (click)="extrudeSelectedNodes()">Extrude Nodes</button>
     <button (click)="doExtrusion()">Extrude Elements</button>
     <button (click)="resetExtrusion()">Reset Extrusion</button>
@@ -67,5 +77,7 @@
     <button (click)="resetNodesColors()">Reset Nodes Colors</button>
     <button (click)="colorEdgesByGroup()">Color Edges By Group</button>
     <button (click)="resetEdgesColors()">Reset Edges Colors</button>
+    <button (click)="showNodeInfo()">Show Node Info</button>
+    <button (click)="hideNodeInfo()">Hide Node Info</button>
 </ng-container>
 

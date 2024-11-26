@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Shaper, Drawer, GraphOperations } from 'grash';
 import * as graphDataJson from '../../assets/dataset/miserables.json';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-graph-viewer',
@@ -14,6 +15,8 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   @ViewChild('container') containerRef!: ElementRef;
   shaper!: any;
   graphData: any = (graphDataJson as any);
+  selectedNodeObj: any = null;
+  selectionSubscription: Subscription | undefined;
 
   @Input() graphNumber: number | undefined;
 
@@ -80,7 +83,25 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit(): void {
     if (this.graphNumber !== undefined) {
       this.loadGraph(this.graphNumber);
+      //this.subscribeOnSelectedNodeObj();
     }
+  }
+
+  subscribeOnSelectedNodeObj() {
+    this.selectionSubscription = this.shaper.interactions.selectionChange$.subscribe((selectedNodes: any[]) => {
+      if (selectedNodes.length === 1) {
+        const selectedNode = selectedNodes[0];
+        this.selectedNodeObj = {
+          id: selectedNode.id,
+          x: selectedNode.mesh.position.x,
+          y: selectedNode.mesh.position.y,
+          z: selectedNode.mesh.position.z,
+          group: selectedNode.group
+        };
+      } else {
+        this.selectedNodeObj = null;
+      }
+    });
   }
 
   onUploadFile(event: any) {
@@ -249,5 +270,14 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   resetEdgesColors() {
     this.shaper.resetEdgesColors();
+  }
+
+  showNodeInfo() {
+    const lastNode = this.shaper.interactions.selectedNodes.length-1;
+    this.selectedNodeObj = this.shaper.interactions.selectedNodes[lastNode];
+  }
+
+  hideNodeInfo() {
+    this.selectedNodeObj = null;
   }
 }
