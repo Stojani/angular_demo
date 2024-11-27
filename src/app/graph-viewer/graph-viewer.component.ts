@@ -3,11 +3,14 @@ import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, 
 import { Shaper, Drawer, GraphOperations } from 'grash';
 import * as graphDataJson from '../../assets/dataset/miserables.json';
 import { Subscription } from 'rxjs';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ExtrudeGroupModalComponent } from '../extrude-group-modal/extrude-group-modal.component';
+import { ResetGroupExtrusionModalComponent } from '../reset-group-extrusion-modal/reset-group-extrusion-modal.component';
 
 @Component({
   selector: 'app-graph-viewer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatDialogModule],
   templateUrl: './graph-viewer.component.html',
   styleUrls: ['./graph-viewer.component.scss']
 })
@@ -19,6 +22,11 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   selectionSubscription: Subscription | undefined;
 
   @Input() graphNumber: number | undefined;
+
+  constructor(
+    private dialog: MatDialog
+  ) {}
+  //private snackBar: MatSnackBar
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['graphNumber'] && this.containerRef) {
@@ -77,8 +85,6 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
       } 
    } 
   }
-
-  constructor() { }
 
   ngAfterViewInit(): void {
     if (this.graphNumber !== undefined) {
@@ -248,28 +254,28 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.shaper.resetNodesExtrusionByGroup();
   }
 
-  extrudeByGroups() {
-    this.shaper.extrudeByGroups();
+  extrudeAllByGroups() {
+    this.shaper.extrudeAllByGroups();
   }
 
-  resetExtrusionByGroup() {
-    this.shaper.resetExtrusionByGroup();
+  resetAllExtrusionByGroups() {
+    this.shaper.resetAllExtrusionByGroups();
   }
 
-  colorNodesByGroup() {
-    this.shaper.colorNodesByGroup();
+  colorAllNodesByGroups() {
+    this.shaper.colorAllNodesByGroups();
   }
 
-  resetNodesColors() {
-    this.shaper.resetNodesColors();
+  resetAllNodesColors() {
+    this.shaper.resetAllNodesColors();
   }
 
-  colorEdgesByGroup() {
-    this.shaper.colorEdgesByGroup();
+  colorAllEdgesByGroups() {
+    this.shaper.colorAllEdgesByGroups();
   }
 
-  resetEdgesColors() {
-    this.shaper.resetEdgesColors();
+  resetAllEdgesColors() {
+    this.shaper.resetAllEdgesColors();
   }
 
   showNodeInfo() {
@@ -279,5 +285,31 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   hideNodeInfo() {
     this.selectedNodeObj = null;
+  }
+
+  extrudeAGroup() {
+    const dialogRef = this.dialog.open(ExtrudeGroupModalComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const { group, color, height } = result;
+        this.shaper.extrudeByGroup(group, height, color);
+      }
+    });
+  }
+
+  resetGroupExtrusion() {
+    const dialogRef = this.dialog.open(ResetGroupExtrusionModalComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const { group } = result;
+        this.shaper.resetExtrusionByGroup(group);
+      }
+    });
   }
 }
