@@ -80,6 +80,16 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         //this.shaper.interactions.enableRotationAroundTest();
         break; 
       } 
+      case 7: { 
+        this.changeBackgroundColor("white");
+        this.showTablet();
+        this.shaper.setAllEdgesColor("black");
+        this.shaper.interactions.disableMouseRotation();
+        this.shaper.interactions.disableShowNodePopUp();
+        this.addAmbientLight();
+        this.changeCameraSettings();
+        break; 
+      } 
       default: { 
         break; 
       } 
@@ -311,5 +321,13 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.shaper.resetExtrusionByGroup(group);
       }
     });
+  }
+
+  enableLensMode() {
+    this.shaper.enableLensMode(100);
+  }
+
+  disableLensMode() {
+    this.shaper.disableLensMode();
   }
 }

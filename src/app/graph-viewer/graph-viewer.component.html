@@ -79,7 +79,11 @@
     <button (click)="resetAllEdgesColors()">Reset All Edges Colors</button>
     <button (click)="showNodeInfo()">Show Node Info</button>
     <button (click)="hideNodeInfo()">Hide Node Info</button>
+</ng-container>
+<ng-container *ngIf="graphNumber===7">
     <button (click)="extrudeAGroup()">Extrude A Group</button>
     <button (click)="resetGroupExtrusion()">Reset Group Extrusion</button>
+    <button (click)="enableLensMode()">Enable Lens Mode</button>
+    <button (click)="disableLensMode()">Disable Lens Mode</button>
 </ng-container>
 
