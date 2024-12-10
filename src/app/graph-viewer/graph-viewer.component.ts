@@ -85,7 +85,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.showTablet();
         this.shaper.setAllEdgesOriginalColor("black");
         this.shaper.interactions.disableMouseRotation();
-        this.shaper.interactions.disableShowNodePopUp();
+        //this.shaper.interactions.disableShowNodePopUp();
         this.addAmbientLight();
         this.changeCameraSettings();
         break; 
