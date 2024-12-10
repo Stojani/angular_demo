@@ -43,16 +43,16 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     //this.changeBackgroundColor("white");
     switch(graphNumber) { 
       case 1: { 
-        this.shaper.setAllEdgesColor("yellow");
+        this.shaper.setAllEdgesOriginalColor("yellow");
         break; 
       } 
       case 2: { 
-        this.shaper.setAllEdgesColor("green");
+        this.shaper.setAllEdgesOriginalColor("green");
         break; 
       }
       case 3: { 
         this.addLight(0,0,-8);
-        this.shaper.setAllEdgesColor("yellow");
+        this.shaper.setAllEdgesOriginalColor("yellow");
         this.autoRotateCamera();
         break; 
       } 
@@ -61,19 +61,19 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.showTablet();
         this.shaper.setCameraPosition(0, -100, 20);
         this.shaper.setAllNodesColor("red");
-        this.shaper.setAllEdgesColor("black");
+        this.shaper.setAllEdgesOriginalColor("black");
         this.shaper.interactions.disableMouseRotation();
         break; 
       } 
       case 5: { 
-        this.shaper.setAllEdgesColor("yellow");
+        this.shaper.setAllEdgesOriginalColor("yellow");
         break; 
       }
       case 6: { 
         this.changeBackgroundColor("white");
         this.showTablet();
         this.shaper.setCameraPosition(0, -50, 50);
-        this.shaper.setAllEdgesColor("black");
+        this.shaper.setAllEdgesOriginalColor("black");
         this.shaper.interactions.disableMouseRotation();
         this.shaper.interactions.disableShowNodePopUp();
         this.addAmbientLight();
@@ -83,7 +83,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
       case 7: { 
         this.changeBackgroundColor("white");
         this.showTablet();
-        this.shaper.setAllEdgesColor("black");
+        this.shaper.setAllEdgesOriginalColor("black");
         this.shaper.interactions.disableMouseRotation();
         this.shaper.interactions.disableShowNodePopUp();
         this.addAmbientLight();
