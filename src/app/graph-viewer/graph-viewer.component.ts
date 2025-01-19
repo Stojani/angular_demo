@@ -4,13 +4,16 @@ import { Shaper, Drawer, GraphOperations } from 'grash';
 import * as graphDataJson from '../../assets/dataset/miserables.json';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 import { ExtrudeGroupModalComponent } from '../extrude-group-modal/extrude-group-modal.component';
 import { ResetGroupExtrusionModalComponent } from '../reset-group-extrusion-modal/reset-group-extrusion-modal.component';
 
 @Component({
   selector: 'app-graph-viewer',
   standalone: true,
-  imports: [CommonModule, MatDialogModule],
+  imports: [CommonModule, MatDialogModule, MatIconModule, MatTooltipModule, MatDividerModule],
   templateUrl: './graph-viewer.component.html',
   styleUrls: ['./graph-viewer.component.scss']
 })
@@ -20,6 +23,13 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   graphData: any = (graphDataJson as any);
   selectedNodeObj: any = null;
   selectionSubscription: Subscription | undefined;
+  selectedMode: string = 'explore';
+  isAutoRotateCamera: boolean = false;
+  isShortestPathExtrusion: boolean = false;
+  isAllByGroupsExtrusion: boolean = false;
+  isAllNodesColoredByGroup: boolean = false;
+  isAllEdgesColoredByGroup: boolean = false;
+  isTabletVisible: boolean = true;
 
   @Input() graphNumber: number | undefined;
 
@@ -90,6 +100,16 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.changeCameraSettings();
         break; 
       } 
+      case 8: { 
+        this.changeBackgroundColor("white");
+        this.showTablet();
+        this.shaper.setAllEdgesOriginalColor("black");
+        this.shaper.interactions.disableMouseRotation();
+        //this.shaper.interactions.disableShowNodePopUp();
+        this.addAmbientLight();
+        this.changeCameraSettings();
+        break; 
+      } 
       default: { 
         break; 
       } 
@@ -101,6 +121,14 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
       this.loadGraph(this.graphNumber);
       //this.subscribeOnSelectedNodeObj();
     }
+  }
+
+  selectMode(mode: string) {
+    this.selectedMode = mode;
+  }
+
+  isLensModeEnabled() {
+    return this.shaper.interactions.lensEnabled;
   }
 
   subscribeOnSelectedNodeObj() {
@@ -150,6 +178,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   autoRotateCameraAroundZ() {
     this.shaper.autoRotateCameraAroundZ();
+    this.isAutoRotateCamera = true;
   }
 
   autoRotateCamera3() {
@@ -158,14 +187,17 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   stopRotateCamera() {
     this.shaper.stopRotateCamera();
+    this.isAutoRotateCamera = false;
   }
 
   showTablet() {
     this.shaper.showTablet();
+    this.isTabletVisible = true;
   }
 
   hideTablet() {
     this.shaper.hideTablet();
+    this.isTabletVisible = false;
   }
 
   showShadows() {
@@ -250,10 +282,12 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   extrudeShortestPath() {
     this.shaper.extrudeShortestPath();
+    this.isShortestPathExtrusion = true;
   }
 
   resetShortestPathExtrusion() {
     this.shaper.resetShortestPathExtrusion();
+    this.isShortestPathExtrusion = false;
   }
 
   extrudeNodesByGroup() {
@@ -266,26 +300,32 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   extrudeAllByGroups() {
     this.shaper.extrudeAllByGroups();
+    this.isAllByGroupsExtrusion = true;
   }
 
   resetAllExtrusionByGroups() {
     this.shaper.resetAllExtrusionByGroups();
+    this.isAllByGroupsExtrusion = false;
   }
 
   colorAllNodesByGroups() {
     this.shaper.colorAllNodesByGroups();
+    this.isAllNodesColoredByGroup = true;
   }
 
   resetAllNodesColors() {
     this.shaper.resetAllNodesColors();
+    this.isAllNodesColoredByGroup = false;
   }
 
   colorAllEdgesByGroups() {
     this.shaper.colorAllEdgesByGroups();
+    this.isAllEdgesColoredByGroup = true;
   }
 
   resetAllEdgesColors() {
     this.shaper.resetAllEdgesColors();
+    this.isAllEdgesColoredByGroup = false;
   }
 
   showNodeInfo() {

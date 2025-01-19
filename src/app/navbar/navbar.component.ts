@@ -9,7 +9,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class NavbarComponent {
   @Output() graphSelected = new EventEmitter<number>();
-  selectedGraph: number | undefined;
+  selectedGraph: number = 1;
 
   selectGraph(graphNumber: number) {
     this.selectedGraph = graphNumber;

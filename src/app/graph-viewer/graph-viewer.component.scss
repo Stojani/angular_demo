@@ -1,0 +1,64 @@
+.vertical-navbar {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 60px;
+    height: calc(100vh - 40px);
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+}
+
+.vertical-navbar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.vertical-navbar-item {
+    margin-bottom: 1em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.vertical-navbar-divider {
+    width: 80%;
+    height: 1px;
+    background-color: grey;
+    margin: 1em 0;
+}
+
+.vertical-navbar-lower {
+    background-color: #333; /* Dark grey color */
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+}
+
+.icon-button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 0.5em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    text-align: center;
+}
+
+.icon-button.selected {
+    background-color: lightgreen;
+    color: black;
+}
+
+.icon-button:hover {
+    background-color: grey;
+}
