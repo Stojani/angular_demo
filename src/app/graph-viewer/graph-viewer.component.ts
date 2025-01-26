@@ -388,4 +388,9 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   disableLensMode() {
     this.shaper.disableLensMode();
   }
+
+  resetSelectedElements() {
+    this.shaper.resetSelectedElements();
+  }
+  
 }
