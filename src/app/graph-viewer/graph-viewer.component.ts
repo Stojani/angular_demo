@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { ExtrudeGroupModalComponent } from '../extrude-group-modal/extrude-group-modal.component';
 import { ResetGroupExtrusionModalComponent } from '../reset-group-extrusion-modal/reset-group-extrusion-modal.component';
+import { SearchNodeModalComponent } from '../search-node-modal/search-node-modal.component';
 
 @Component({
   selector: 'app-graph-viewer',
@@ -355,6 +356,18 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.selectedNodeObj = null;
   }
 
+  openSearchNodeDialog() {
+    const dialogRef = this.dialog.open(SearchNodeModalComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.nodeId) {
+        this.searchNode(result.nodeId);
+      }
+    });
+  }
+
   extrudeAGroup() {
     const dialogRef = this.dialog.open(ExtrudeGroupModalComponent, {
       width: '400px'
@@ -392,5 +405,9 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   resetSelectedElements() {
     this.shaper.resetSelectedElements();
   }
-  
+
+  searchNode(nodeId: string) {
+    this.shaper.interactions.searchAndSelectNodeById(nodeId);
+  }
+
 }

@@ -31,6 +31,11 @@
                     </button>
                 </li>
                 <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Search Node" (click)="openSearchNodeDialog()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="{{isLensModeEnabled() ? 'Disable Lens Mode' : 'Enable Lens Mode'}}" [class.selected]="isLensModeEnabled()" (click)="isLensModeEnabled() ? disableLensMode() : enableLensMode()">
                         <mat-icon>camera</mat-icon>
                     </button>
