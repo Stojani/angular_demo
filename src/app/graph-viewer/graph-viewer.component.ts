@@ -125,6 +125,24 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
 
   selectMode(mode: string) {
     this.selectedMode = mode;
+    switch(mode) {
+      case 'explore': {
+        this.shaper.interactions.enableExploreMode();
+        break;
+      }
+      case 'edit': {
+        this.shaper.interactions.enableEditMode();
+        break;
+      }
+      case 'analytics': {
+        this.shaper.interactions.enableAnalyticsMode();
+        break;
+      }
+      default: {
+        this.shaper.interactions.enableExploreMode();
+        break;
+      }
+    }
   }
 
   isLensModeEnabled() {

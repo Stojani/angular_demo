@@ -1,8 +1,3 @@
-<!-- 
-<div *ngIf="graphNumber">
-    <p>Caricamento Graph {{ graphNumber }}</p>
-</div>
--->
 <div *ngIf="graphNumber === 8" class="vertical-navbar">
     <ul class="vertical-navbar-menu">
         <li class="vertical-navbar-item">
@@ -20,70 +15,97 @@
                 <mat-icon>analytics</mat-icon>
             </button>
         </li>
-        <mat-divider></mat-divider>
+    </ul>
+    <div class="vertical-navbar-divider"></div>
+    <div class="vertical-navbar-lower">
         <ng-container *ngIf="selectedMode === 'explore'">
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="{{isTabletVisible ? 'Hide tablet' : 'Show tablet'}}" [class.selected]="isTabletVisible" (click)="isTabletVisible ? hideTablet() : showTablet()">
-                    <mat-icon>tablet</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera (Z axis)'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCameraAroundZ()">
-                    <mat-icon>360</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="{{isLensModeEnabled() ? 'Disable Lens Mode' : 'Enable Lens Mode'}}" [class.selected]="isLensModeEnabled()" (click)="isLensModeEnabled() ? disableLensMode() : enableLensMode()">
-                    <mat-icon>camera</mat-icon>
-                </button>
-            </li>
-            
+            <ul class="vertical-navbar-menu">
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isTabletVisible ? 'Hide tablet' : 'Show tablet'}}" [class.selected]="isTabletVisible" (click)="isTabletVisible ? hideTablet() : showTablet()">
+                        <mat-icon>tablet</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera (Z axis)'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCameraAroundZ()">
+                        <mat-icon>360</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isLensModeEnabled() ? 'Disable Lens Mode' : 'Enable Lens Mode'}}" [class.selected]="isLensModeEnabled()" (click)="isLensModeEnabled() ? disableLensMode() : enableLensMode()">
+                        <mat-icon>camera</mat-icon>
+                    </button>
+                </li>
+            </ul>
         </ng-container>
         <ng-container *ngIf="selectedMode === 'edit'">
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="Icon 3">
-                    <mat-icon>icon3</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="Icon 4">
-                    <mat-icon>icon4</mat-icon>
-                </button>
-            </li>
+            <ul class="vertical-navbar-menu">
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera (Z axis)'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCameraAroundZ()">
+                        <mat-icon>360</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Add Node" (click)="addNode()">
+                        <mat-icon>add_circle</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Remove Nodes" (click)="removeSelectedNodes()">
+                        <mat-icon>do_not_disturb_on</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Add Edge" (click)="addEdge()">
+                        <mat-icon>open_in_full</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Remove Edges" (click)="removeSelectedNodes()">
+                        <mat-icon>mobiledata_off</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Icon 4">
+                        <mat-icon>icon4</mat-icon>
+                    </button>
+                </li>
+            </ul>
         </ng-container>
         <ng-container *ngIf="selectedMode === 'analytics'">
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="Extrude A Group" (click)="extrudeAGroup()">
-                    <mat-icon>trending_up</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="Reset Group Extrusion" (click)="resetGroupExtrusion()">
-                    <mat-icon>trending_down</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="{{isShortestPathExtrusion ? 'Reset Extrusion By Groups' : 'Extrude All By Groups'}}" [class.selected]="isAllByGroupsExtrusion" (click)="isAllByGroupsExtrusion ? resetAllExtrusionByGroups() : extrudeAllByGroups()">
-                    <mat-icon>stacked_bar_chart</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="{{isAllNodesColoredByGroup ? 'Reset All Nodes Colors' : 'Color All Nodes By Groups'}}" [class.selected]="isAllNodesColoredByGroup" (click)="isAllNodesColoredByGroup ? resetAllNodesColors() : colorAllNodesByGroups()">
-                    <mat-icon>bubble_chart</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="{{isAllEdgesColoredByGroup ? 'Reset All Edges Colors' : 'Color All Edges By Groups'}}" [class.selected]="isAllEdgesColoredByGroup" (click)="isAllEdgesColoredByGroup ? resetAllEdgesColors() : colorAllEdgesByGroups()">
-                    <mat-icon>stacked_line_chart</mat-icon>
-                </button>
-            </li>
-            <li class="vertical-navbar-item">
-                <button class="icon-button" matTooltip="{{isShortestPathExtrusion ? 'Reset Shortest Path' : 'Show Shortest Path'}}" [class.selected]="isShortestPathExtrusion" (click)="isShortestPathExtrusion ? resetShortestPathExtrusion() : extrudeShortestPath()">
-                    <mat-icon>route</mat-icon>
-                </button>
-            </li>
+            <ul class="vertical-navbar-menu">
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Extrude A Group" (click)="extrudeAGroup()">
+                        <mat-icon>trending_up</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="Reset Group Extrusion" (click)="resetGroupExtrusion()">
+                        <mat-icon>trending_down</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isShortestPathExtrusion ? 'Reset Extrusion By Groups' : 'Extrude All By Groups'}}" [class.selected]="isAllByGroupsExtrusion" (click)="isAllByGroupsExtrusion ? resetAllExtrusionByGroups() : extrudeAllByGroups()">
+                        <mat-icon>stacked_bar_chart</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAllNodesColoredByGroup ? 'Reset All Nodes Colors' : 'Color All Nodes By Groups'}}" [class.selected]="isAllNodesColoredByGroup" (click)="isAllNodesColoredByGroup ? resetAllNodesColors() : colorAllNodesByGroups()">
+                        <mat-icon>bubble_chart</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAllEdgesColoredByGroup ? 'Reset All Edges Colors' : 'Color All Edges By Groups'}}" [class.selected]="isAllEdgesColoredByGroup" (click)="isAllEdgesColoredByGroup ? resetAllEdgesColors() : colorAllEdgesByGroups()">
+                        <mat-icon>stacked_line_chart</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isShortestPathExtrusion ? 'Reset Shortest Path' : 'Show Shortest Path'}}" [class.selected]="isShortestPathExtrusion" (click)="isShortestPathExtrusion ? resetShortestPathExtrusion() : extrudeShortestPath()">
+                        <mat-icon>route</mat-icon>
+                    </button>
+                </li>
+            </ul>
         </ng-container>
-    </ul>
+    </div>
 </div>
 <div #container style="width: 100%; height: 95vh;"></div>
 <ng-container *ngIf="graphNumber===1">
@@ -172,4 +194,3 @@
 </ng-container>
 <ng-container *ngIf="graphNumber===8">
 </ng-container>
-

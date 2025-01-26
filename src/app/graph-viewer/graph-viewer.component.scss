@@ -9,40 +9,38 @@
     flex-direction: column;
     align-items: center;
     padding-top: 1em;
-}
-
-.vertical-navbar-menu {
+  }
+  
+  .vertical-navbar-menu {
     list-style: none;
     padding: 0;
     margin: 0;
     width: 100%;
-}
-
-.vertical-navbar-item {
+  }
+  
+  .vertical-navbar-item {
     margin-bottom: 1em;
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-.vertical-navbar-divider {
+  }
+  
+  .vertical-navbar-divider {
     width: 80%;
     height: 1px;
     background-color: grey;
-    margin: 1em 0;
-}
-
-.vertical-navbar-lower {
+  }
+  
+  .vertical-navbar-lower {
     background-color: #333; /* Dark grey color */
     width: 100%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1em;
-}
-
-.icon-button {
+  }
+  
+  .icon-button {
     background-color: black;
     border: none;
     color: white;
@@ -52,13 +50,17 @@
     transition: background-color 0.3s, color 0.3s;
     width: 100%;
     text-align: center;
-}
-
-.icon-button.selected {
-    background-color: lightgreen;
+  }
+  
+  .icon-button.lower {
+    background-color: #333; /* Dark grey color for lower section */
+  }
+  
+  .icon-button.selected {
+    background-color: lightgreen; /* Same color as horizontal navbar selection */
     color: black;
-}
-
-.icon-button:hover {
+  }
+  
+  .icon-button:hover {
     background-color: grey;
-}
+  }
