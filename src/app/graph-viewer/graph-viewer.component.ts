@@ -402,6 +402,18 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.shaper.disableLensMode();
   }
 
+  isNeighboursHighlightActive() {
+    return this.shaper.interactions.flagNeighboursHighlight;
+  }
+
+  enableNeighboursHighlight() {
+    this.shaper.interactions.enableNeighboursHighlight();
+  }
+  
+  disableNeighboursHighlight() {
+    this.shaper.interactions.disableNeighboursHighlight();
+  }
+
   resetSelectedElements() {
     this.shaper.resetSelectedElements();
   }

@@ -40,6 +40,11 @@
                         <mat-icon>camera</mat-icon>
                     </button>
                 </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isNeighboursHighlightActive() ? 'Disable Neighbours Highlight' : 'Enable Neighbours Highlight'}}" [class.selected]="isNeighboursHighlightActive()" (click)="isNeighboursHighlightActive() ? disableNeighboursHighlight() : enableNeighboursHighlight()">
+                        <mat-icon>hub</mat-icon>
+                    </button>
+                </li>
             </ul>
         </ng-container>
         <ng-container *ngIf="selectedMode === 'edit'">
