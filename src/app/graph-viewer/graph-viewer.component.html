@@ -84,6 +84,16 @@
         <ng-container *ngIf="selectedMode === 'analytics'">
             <ul class="vertical-navbar-menu">
                 <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAllNodesColoredByGroup ? 'Reset All Nodes Colors' : 'Color All Nodes By Groups'}}" [class.selected]="isAllNodesColoredByGroup" (click)="isAllNodesColoredByGroup ? resetAllNodesColors() : colorAllNodesByGroups()">
+                        <mat-icon>bubble_chart</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAllEdgesColoredByGroup ? 'Reset All Edges Colors' : 'Color All Edges By Groups'}}" [class.selected]="isAllEdgesColoredByGroup" (click)="isAllEdgesColoredByGroup ? resetAllEdgesColors() : colorAllEdgesByGroups()">
+                        <mat-icon>stacked_line_chart</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="Extrude A Group" (click)="extrudeAGroup()">
                         <mat-icon>trending_up</mat-icon>
                     </button>
@@ -94,20 +104,15 @@
                     </button>
                 </li>
                 <li class="vertical-navbar-item">
-                    <button class="icon-button lower" matTooltip="{{isShortestPathExtrusion ? 'Reset Extrusion By Groups' : 'Extrude All By Groups'}}" [class.selected]="isAllByGroupsExtrusion" (click)="isAllByGroupsExtrusion ? resetAllExtrusionByGroups() : extrudeAllByGroups()">
+                    <button class="icon-button lower" matTooltip="{{isAllByGroupsExtrusion ? 'Reset Extrusion By Groups' : 'Extrude All By Groups'}}" [class.selected]="isAllByGroupsExtrusion" (click)="isAllByGroupsExtrusion ? resetAllExtrusionByGroups() : extrudeAllByGroups()">
                         <mat-icon>stacked_bar_chart</mat-icon>
                     </button>
                 </li>
                 <li class="vertical-navbar-item">
-                    <button class="icon-button lower" matTooltip="{{isAllNodesColoredByGroup ? 'Reset All Nodes Colors' : 'Color All Nodes By Groups'}}" [class.selected]="isAllNodesColoredByGroup" (click)="isAllNodesColoredByGroup ? resetAllNodesColors() : colorAllNodesByGroups()">
-                        <mat-icon>bubble_chart</mat-icon>
+                    <button class="icon-button lower" matTooltip="{{isAllByDensityExtrusion ? 'Reset Extrusion By Density' : 'Extrude All By Density'}}" [class.selected]="isAllByDensityExtrusion" (click)="isAllByDensityExtrusion ? resetAllExtrusionByDensity() : extrudeAllByDensity()">
+                        <mat-icon>signal_cellular_alt</mat-icon>
                     </button>
-                </li>
-                <li class="vertical-navbar-item">
-                    <button class="icon-button lower" matTooltip="{{isAllEdgesColoredByGroup ? 'Reset All Edges Colors' : 'Color All Edges By Groups'}}" [class.selected]="isAllEdgesColoredByGroup" (click)="isAllEdgesColoredByGroup ? resetAllEdgesColors() : colorAllEdgesByGroups()">
-                        <mat-icon>stacked_line_chart</mat-icon>
-                    </button>
-                </li>
+                </li>      
                 <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="{{isShortestPathExtrusion ? 'Reset Shortest Path' : 'Show Shortest Path'}}" [class.selected]="isShortestPathExtrusion" (click)="isShortestPathExtrusion ? resetShortestPathExtrusion() : extrudeShortestPath()">
                         <mat-icon>route</mat-icon>
