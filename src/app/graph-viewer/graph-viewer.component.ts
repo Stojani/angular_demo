@@ -415,6 +415,18 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.shaper.interactions.disableNeighboursHighlight();
   }
 
+  isGroupNodesHighlightActive() {
+    return this.shaper.interactions.flagGroupNodesHighlight;
+  }
+
+  enableGroupNodesHighlight() {
+    this.shaper.interactions.enableGroupNodesHighlight();
+  }
+  
+  disableGroupNodesHighlight() {
+    this.shaper.interactions.disableGroupNodesHighlight();
+  }
+
   resetSelectedElements() {
     this.shaper.resetSelectedElements();
   }

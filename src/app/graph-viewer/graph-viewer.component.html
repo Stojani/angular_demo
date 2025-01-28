@@ -45,6 +45,11 @@
                         <mat-icon>hub</mat-icon>
                     </button>
                 </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isGroupNodesHighlightActive() ? 'Disable Group Nodes Highlight' : 'Enable Group Nodes Highlight'}}" [class.selected]="isGroupNodesHighlightActive()" (click)="isGroupNodesHighlightActive() ? disableGroupNodesHighlight() : enableGroupNodesHighlight()">
+                        <mat-icon>workspaces</mat-icon>
+                    </button>
+                </li>
             </ul>
         </ng-container>
         <ng-container *ngIf="selectedMode === 'edit'">
