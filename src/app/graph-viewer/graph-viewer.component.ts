@@ -28,7 +28,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   isAutoRotateCamera: boolean = false;
   isShortestPathExtrusion: boolean = false;
   isAllByGroupsExtrusion: boolean = false;
-  isAllByDensityExtrusion: boolean = false;
+  isAllbyDegreeExtrusion: boolean = false;
   isAllNodesColoredByGroup: boolean = false;
   isAllEdgesColoredByGroup: boolean = false;
   isTabletVisible: boolean = true;
@@ -435,14 +435,14 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.shaper.interactions.searchAndSelectNodeById(nodeId);
   }
 
-  extrudeAllByDensity() {
-    this.shaper.extrudeAllNodesByDensity();
-    this.isAllByDensityExtrusion = true;
+  extrudeAllbyDegree() {
+    this.shaper.extrudeAllNodesbyDegree();
+    this.isAllbyDegreeExtrusion = true;
   }
 
-  resetAllExtrusionByDensity() {
-    this.shaper.resetAllNodesExtrusionByDensity();
-    this.isAllByDensityExtrusion = false;
+  resetAllExtrusionbyDegree() {
+    this.shaper.resetAllNodesExtrusionbyDegree();
+    this.isAllbyDegreeExtrusion = false;
   }
 
 }
