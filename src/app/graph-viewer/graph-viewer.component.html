@@ -89,6 +89,11 @@
         <ng-container *ngIf="selectedMode === 'analytics'">
             <ul class="vertical-navbar-menu">
                 <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera (Z axis)'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCameraAroundZ()">
+                        <mat-icon>360</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="{{isAllNodesColoredByGroup ? 'Reset All Nodes Colors' : 'Color All Nodes By Groups'}}" [class.selected]="isAllNodesColoredByGroup" (click)="isAllNodesColoredByGroup ? resetAllNodesColors() : colorAllNodesByGroups()">
                         <mat-icon>bubble_chart</mat-icon>
                     </button>
@@ -114,10 +119,15 @@
                     </button>
                 </li>
                 <li class="vertical-navbar-item">
-                    <button class="icon-button lower" matTooltip="{{isAllbyDegreeExtrusion ? 'Reset Extrusion By Degree' : 'Extrude All By Degree'}}" [class.selected]="isAllbyDegreeExtrusion" (click)="isAllbyDegreeExtrusion ? resetAllExtrusionbyDegree() : extrudeAllbyDegree()">
+                    <button class="icon-button lower" matTooltip="{{isAllByDegreeExtrusion ? 'Reset Extrusion By Degree' : 'Extrude All By Degree'}}" [class.selected]="isAllByDegreeExtrusion" (click)="isAllByDegreeExtrusion ? resetAllExtrusionByDegree() : extrudeAllByDegree()">
                         <mat-icon>signal_cellular_alt</mat-icon>
                     </button>
-                </li>      
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAllByDistanceExtrusion ? 'Reset Extrusion By Distance' : 'Extrude All By Distance'}}" [class.selected]="isAllByDistanceExtrusion" (click)="isAllByDistanceExtrusion ? resetAllExtrusionByDistance() : extrudeAllByDistance()">
+                        <mat-icon>expand</mat-icon>
+                    </button>
+                </li>  
                 <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="{{isShortestPathExtrusion ? 'Reset Shortest Path' : 'Show Shortest Path'}}" [class.selected]="isShortestPathExtrusion" (click)="isShortestPathExtrusion ? resetShortestPathExtrusion() : extrudeShortestPath()">
                         <mat-icon>route</mat-icon>
