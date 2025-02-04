@@ -447,12 +447,12 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   }
 
   extrudeAllByDistance() {
-    this.shaper.extrudeNodesByDistance();
+    this.shaper.extrudeNodesByDistance(0, 10);
     this.isAllByDistanceExtrusion = true;
   }
 
   resetAllExtrusionByDistance() {
-    this.shaper.resetNodesExtrusionByDistance();
+    this.shaper.resetNodesExtrusionByDistance(0, 10);
     this.isAllByDistanceExtrusion = false;
   }
 
