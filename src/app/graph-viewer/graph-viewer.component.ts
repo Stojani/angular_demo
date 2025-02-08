@@ -237,6 +237,10 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     this.shaper.removeSelectedNodes();
   }
 
+  removeSelectedEdges() {
+    this.shaper.removeSelectedEdges();
+  }
+
   updateSimulation() {
     this.shaper.updateGraphSimulation();
   }
