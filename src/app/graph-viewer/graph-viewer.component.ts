@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Shaper, Drawer, GraphOperations } from 'grash';
 import * as graphDataJson from '../../assets/dataset/miserables.json';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ExtrudeGroupModalComponent } from '../extrude-group-modal/extrude-group-modal.component';
 import { ResetGroupExtrusionModalComponent } from '../reset-group-extrusion-modal/reset-group-extrusion-modal.component';
 import { SearchNodeModalComponent } from '../search-node-modal/search-node-modal.component';
+import { ModeService } from '../services/mode.service';
 
 @Component({
   selector: 'app-graph-viewer',
@@ -18,7 +19,8 @@ import { SearchNodeModalComponent } from '../search-node-modal/search-node-modal
   templateUrl: './graph-viewer.component.html',
   styleUrls: ['./graph-viewer.component.scss']
 })
-export class GraphViewerComponent implements AfterViewInit, OnChanges {
+
+export class GraphViewerComponent implements AfterViewInit, OnChanges, OnInit, OnDestroy {
   @ViewChild('container') containerRef!: ElementRef;
   shaper!: any;
   graphData: any = (graphDataJson as any);
@@ -33,13 +35,35 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   isAllNodesColoredByGroup: boolean = false;
   isAllEdgesColoredByGroup: boolean = false;
   isTabletVisible: boolean = true;
+  private modeSubscription!: Subscription;
 
   @Input() graphNumber: number | undefined;
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private modeService: ModeService
   ) {}
-  //private snackBar: MatSnackBar
+
+  ngOnInit() {
+    this.modeSubscription = this.modeService.mode$.subscribe(mode => {
+      if (mode === '3D') {
+        this.set3DCamera();
+      } else if (mode === '2D') {
+        this.set2DCamera();
+      } else if (mode === 'autoRotateCameraAroundZ') {
+        this.autoRotateCameraAroundZ();
+      } else if (mode === 'stopRotateCameraAroundZ') {
+        this.stopRotateCamera();
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (this.graphNumber !== undefined) {
+      this.loadGraph(this.graphNumber);
+      //this.subscribeOnSelectedNodeObj();
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['graphNumber'] && this.containerRef) {
@@ -54,7 +78,17 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     const { nodes, edges } = Drawer.fromJSON(this.graphData);
     this.shaper = new Shaper(this.containerRef.nativeElement, nodes, edges);
     //this.changeBackgroundColor("white");
-    switch(graphNumber) { 
+    switch(graphNumber) {
+      case 0: { 
+        this.changeBackgroundColor("white");
+        this.showTablet();
+        this.shaper.setAllEdgesOriginalColor("black");
+        this.shaper.interactions.disableMouseRotation();
+        //this.shaper.interactions.disableShowNodePopUp();
+        this.addAmbientLight();
+        this.changeCameraSettings();
+        break; 
+      } 
       case 1: { 
         this.shaper.setAllEdgesOriginalColor("yellow");
         break; 
@@ -102,28 +136,11 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
         this.addAmbientLight();
         this.changeCameraSettings();
         break; 
-      } 
-      case 8: { 
-        this.changeBackgroundColor("white");
-        this.showTablet();
-        this.shaper.setAllEdgesOriginalColor("black");
-        this.shaper.interactions.disableMouseRotation();
-        //this.shaper.interactions.disableShowNodePopUp();
-        this.addAmbientLight();
-        this.changeCameraSettings();
-        break; 
-      } 
+      }
       default: { 
         break; 
       } 
    } 
-  }
-
-  ngAfterViewInit(): void {
-    if (this.graphNumber !== undefined) {
-      this.loadGraph(this.graphNumber);
-      //this.subscribeOnSelectedNodeObj();
-    }
   }
 
   selectMode(mode: string) {
@@ -149,7 +166,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   }
 
   isLensModeEnabled() {
-    return this.shaper.interactions.lensEnabled;
+    return this.shaper?.interactions?.lensEnabled;
   }
 
   subscribeOnSelectedNodeObj() {
@@ -277,6 +294,20 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
     });
   }
 
+  set2DCamera() {
+    this.shaper.set2DCameraSettings(70);
+  }
+
+  set3DCamera() {
+    this.shaper.setCameraSettings({
+      fov: 10,
+      aspect: 16/9,
+      near: 0.1,
+      far: 2000,
+      distance: 300
+    });
+  }
+
   resetCameraSettings() {
     this.shaper.resetCameraSettings();
   }
@@ -401,39 +432,39 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   }
 
   enableLensMode() {
-    this.shaper.enableLensMode(100);
+    this.shaper?.enableLensMode(100);
   }
 
   disableLensMode() {
-    this.shaper.disableLensMode();
+    this.shaper?.disableLensMode();
   }
 
   isNeighboursHighlightActive() {
-    return this.shaper.interactions.flagNeighboursHighlight;
+    return this.shaper?.interactions?.flagNeighboursHighlight;
   }
 
   enableNeighboursHighlight() {
-    this.shaper.interactions.enableNeighboursHighlight();
+    this.shaper?.interactions.enableNeighboursHighlight();
   }
   
   disableNeighboursHighlight() {
-    this.shaper.interactions.disableNeighboursHighlight();
+    this.shaper?.interactions?.disableNeighboursHighlight();
   }
 
   isGroupNodesHighlightActive() {
-    return this.shaper.interactions.flagGroupNodesHighlight;
+    return this.shaper?.interactions?.flagGroupNodesHighlight;
   }
 
   enableGroupNodesHighlight() {
-    this.shaper.interactions.enableGroupNodesHighlight();
+    this.shaper?.interactions?.enableGroupNodesHighlight();
   }
   
   disableGroupNodesHighlight() {
-    this.shaper.interactions.disableGroupNodesHighlight();
+    this.shaper?.interactions?.disableGroupNodesHighlight();
   }
 
   resetSelectedElements() {
-    this.shaper.resetSelectedElements();
+    this.shaper?.resetSelectedElements();
   }
 
   searchNode(nodeId: string) {
@@ -458,6 +489,10 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges {
   resetAllExtrusionByDistance() {
     this.shaper.resetNodesExtrusionByDistance(0, 10);
     this.isAllByDistanceExtrusion = false;
+  }
+
+  ngOnDestroy() {
+    this.modeSubscription.unsubscribe();
   }
 
 }

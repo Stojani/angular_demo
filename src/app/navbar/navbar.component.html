@@ -1,5 +1,8 @@
 <nav class="navbar">
-  <ul class="navbar-menu">
+  <ul class="navbar-menu" *ngIf="false">
+    <li class="navbar-item">
+      <button (click)="selectGraph(0)" [class.selected]="selectedGraph === 0" class="navbar-button">Graph 0</button>
+    </li>
     <li class="navbar-item">
       <button (click)="selectGraph(1)" [class.selected]="selectedGraph === 1" class="navbar-button">Graph 1</button>
     </li>
@@ -23,6 +26,23 @@
     </li>
     <li class="navbar-item">
       <button (click)="selectGraph(8)" [class.selected]="selectedGraph === 8" class="navbar-button">Graph 8</button>
+    </li>
+  </ul>
+  <ul class="navbar-icon-menu">
+    <li class="navbar-icon-item">
+      <button class="icon-button" matTooltip="Icon 1">
+        <mat-icon>upload</mat-icon>
+      </button>
+    </li>
+    <li class="navbar-icon-item">
+      <button class="icon-button" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCamera()">
+        <mat-icon>360</mat-icon>
+    </button>
+    </li>
+    <li class="navbar-icon-item">
+      <mat-slide-toggle [(ngModel)]="is3DMode" (change)="toggleMode()" class="mode-toggle">
+        <span>{{ is3DMode ? '3D' : '2D' }}</span>
+      </mat-slide-toggle>
     </li>
   </ul>
 </nav>

@@ -10,7 +10,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
-  selectedGraph: number = 1;
+  selectedGraph: number = 0;
 
   onGraphSelected(graphNumber: number) {
     this.selectedGraph = graphNumber;
