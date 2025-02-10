@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Upload Graph Data</h2>
+<mat-dialog-content>
+  <input type="file" (change)="onFileSelected($event)" accept=".json">
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button (click)="onUpload()" [disabled]="!file">Upload</button>
+</mat-dialog-actions>

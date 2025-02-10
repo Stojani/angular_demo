@@ -45,7 +45,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges, OnInit, O
   ) {}
 
   ngOnInit() {
-    this.modeSubscription = this.modeService.mode$.subscribe(mode => {
+    this.modeSubscription = this.modeService.mode$.subscribe(({ mode, data }) => {
       if (mode === '3D') {
         this.set3DCamera();
       } else if (mode === '2D') {
@@ -54,30 +54,46 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges, OnInit, O
         this.autoRotateCameraAroundZ();
       } else if (mode === 'stopRotateCameraAroundZ') {
         this.stopRotateCamera();
+      } else if (mode === 'loadGraph') {
+        this.loadGraphData(data);
+        if (this.graphNumber !== undefined) {
+          this.manageGraphView(this.graphNumber);
+        } else {
+          this.manageGraphView(0);
+        }
       }
     });
   }
 
   ngAfterViewInit(): void {
     if (this.graphNumber !== undefined) {
-      this.loadGraph(this.graphNumber);
+      this.loadGraphData(this.graphData);
+      this.manageGraphView(this.graphNumber);
       //this.subscribeOnSelectedNodeObj();
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['graphNumber'] && this.containerRef) {
-      this.loadGraph(changes['graphNumber'].currentValue);
+      this.loadGraphData(this.graphData);
+      this.manageGraphView(changes['graphNumber'].currentValue);
     }
   }
 
-  loadGraph(graphNumber: number) {
+  loadGraphData(data: any) {
     if (this.shaper) {
       this.shaper.destroy();
     }
-    const { nodes, edges } = Drawer.fromJSON(this.graphData);
+    if(data === null) {
+      this.graphData = (graphDataJson as any);
+    } else {
+      this.graphData = data;
+    }
+    const { nodes, edges } = Drawer.fromJSON(data);
     this.shaper = new Shaper(this.containerRef.nativeElement, nodes, edges);
-    //this.changeBackgroundColor("white");
+  }
+
+  manageGraphView(graphNumber: number) {
     switch(graphNumber) {
       case 0: { 
         this.changeBackgroundColor("white");
@@ -140,7 +156,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges, OnInit, O
       default: { 
         break; 
       } 
-   } 
+    } 
   }
 
   selectMode(mode: string) {

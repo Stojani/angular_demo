@@ -5,11 +5,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ModeService {
-  private modeSubject = new Subject<string>();
+  private modeSubject = new Subject<{ mode: string, data?: any }>();
 
   mode$ = this.modeSubject.asObservable();
 
-  setMode(mode: string) {
-    this.modeSubject.next(mode);
+  setMode(mode: string, data?: any) {
+    this.modeSubject.next({ mode, data });
   }
 }

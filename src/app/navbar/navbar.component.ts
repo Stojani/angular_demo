@@ -3,8 +3,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ModeService } from '../services/mode.service';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ModeService } from '../services/mode.service';
+import { UploadGraphModalComponent } from '../upload-graph-modal/upload-graph-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +21,7 @@ export class NavbarComponent {
   is3DMode: boolean = true; // Modalità di default è 3D
   isAutoRotateCamera: boolean = false;
 
-  constructor(private modeService: ModeService) {}
+  constructor(private modeService: ModeService, private dialog: MatDialog) {}
 
   selectGraph(graphNumber: number) {
     this.selectedGraph = graphNumber;
@@ -50,5 +52,17 @@ export class NavbarComponent {
   stopRotateCamera() {
     this.modeService.setMode('stopRotateCameraAroundZ');
     this.isAutoRotateCamera = false;
+  }
+
+  uploadGraph() {
+    const dialogRef = this.dialog.open(UploadGraphModalComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.modeService.setMode('loadGraph', result);
+      }
+    });
   }
 }
