@@ -26,11 +26,6 @@
                     </button>
                 </li>
                 <li class="vertical-navbar-item">
-                    <button class="icon-button lower" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera (Z axis)'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCameraAroundZ()">
-                        <mat-icon>360</mat-icon>
-                    </button>
-                </li>
-                <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="Search Node" (click)="openSearchNodeDialog()">
                         <mat-icon>search</mat-icon>
                     </button>
@@ -50,15 +45,20 @@
                         <mat-icon>workspaces</mat-icon>
                     </button>
                 </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isAllEdgesColoredByWeight ? 'Reset All Edges Colors' : 'Color All Edges By Weight'}}" [class.selected]="isAllEdgesColoredByWeight" (click)="isAllEdgesColoredByWeight ? resetAllEdgesColors() : colorAllEdgesByWeight()">
+                        <mat-icon>segment</mat-icon>
+                    </button>
+                </li>
+                <li class="vertical-navbar-item">
+                    <button class="icon-button lower" matTooltip="{{isNodeEdgesHighlightActive() ? 'Disable Node Edges Highlight' : 'Enable Node Edges Highlight'}}" [class.selected]="isNodeEdgesHighlightActive()" (click)="isNodeEdgesHighlightActive() ? disableNodeEdgesHighlight() : enableNodeEdgesHighlight()">
+                        <mat-icon>rule</mat-icon>
+                    </button>
+                </li>
             </ul>
         </ng-container>
         <ng-container *ngIf="selectedMode === 'edit'">
             <ul class="vertical-navbar-menu">
-                <li class="vertical-navbar-item">
-                    <button class="icon-button lower" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera (Z axis)'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCameraAroundZ()">
-                        <mat-icon>360</mat-icon>
-                    </button>
-                </li>
                 <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="Add Node" (click)="addNode()">
                         <mat-icon>add_circle</mat-icon>
@@ -88,11 +88,6 @@
         </ng-container>
         <ng-container *ngIf="selectedMode === 'analytics'">
             <ul class="vertical-navbar-menu">
-                <li class="vertical-navbar-item">
-                    <button class="icon-button lower" matTooltip="{{isAutoRotateCamera ? 'Stop Autorotate camera' : 'Autorotate camera (Z axis)'}}" [class.selected]="isAutoRotateCamera" (click)="isAutoRotateCamera ? stopRotateCamera() : autoRotateCameraAroundZ()">
-                        <mat-icon>360</mat-icon>
-                    </button>
-                </li>
                 <li class="vertical-navbar-item">
                     <button class="icon-button lower" matTooltip="{{isAllNodesColoredByGroup ? 'Reset All Nodes Colors' : 'Color All Nodes By Groups'}}" [class.selected]="isAllNodesColoredByGroup" (click)="isAllNodesColoredByGroup ? resetAllNodesColors() : colorAllNodesByGroups()">
                         <mat-icon>bubble_chart</mat-icon>

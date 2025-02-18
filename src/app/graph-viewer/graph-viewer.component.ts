@@ -34,6 +34,7 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges, OnInit, O
   isAllByDistanceExtrusion: boolean = false;
   isAllNodesColoredByGroup: boolean = false;
   isAllEdgesColoredByGroup: boolean = false;
+  isAllEdgesColoredByWeight: boolean = false;
   isTabletVisible: boolean = true;
   private modeSubscription!: Subscription;
 
@@ -395,9 +396,15 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges, OnInit, O
     this.isAllEdgesColoredByGroup = true;
   }
 
+  colorAllEdgesByWeight() {
+    this.shaper.colorEdgesByWeight();
+    this.isAllEdgesColoredByWeight = true;
+  }
+
   resetAllEdgesColors() {
     this.shaper.resetAllEdgesColors();
     this.isAllEdgesColoredByGroup = false;
+    this.isAllEdgesColoredByWeight = false;
   }
 
   showNodeInfo() {
@@ -471,12 +478,24 @@ export class GraphViewerComponent implements AfterViewInit, OnChanges, OnInit, O
     return this.shaper?.interactions?.flagGroupNodesHighlight;
   }
 
+  isNodeEdgesHighlightActive() {
+    return this.shaper?.interactions?.flagNodeEdgesHighlight;
+  }
+
   enableGroupNodesHighlight() {
     this.shaper?.interactions?.enableGroupNodesHighlight();
   }
   
   disableGroupNodesHighlight() {
     this.shaper?.interactions?.disableGroupNodesHighlight();
+  }
+
+  enableNodeEdgesHighlight() {
+    this.shaper?.interactions?.enableNodeEdgesHighlight();
+  }
+
+  disableNodeEdgesHighlight() {
+    this.shaper?.interactions?.disableNodeEdgesHighlight();
   }
 
   resetSelectedElements() {
