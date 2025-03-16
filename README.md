@@ -1,5 +1,7 @@
 # AngularDemo
 
+Angular Demo for GraSh library use demonstration
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
 ## Development server
